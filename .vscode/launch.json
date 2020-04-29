@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/gradebook/src/GradeBook/bin/Debug/netcoreapp3.1/GradeBook.dll",
+            "program": "${workspaceFolder}/odetofood/OdeToFood/bin/Debug/netcoreapp3.1/OdeToFood.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/gradebook/src/GradeBook",
+            "cwd": "${workspaceFolder}/odetoFood/OdeToFood",
             "console": "internalConsole",
             "stopAtEntry": false
         },

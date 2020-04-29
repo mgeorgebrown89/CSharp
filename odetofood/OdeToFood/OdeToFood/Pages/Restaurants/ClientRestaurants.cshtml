@@ -1,0 +1,60 @@
+﻿@page
+@model OdeToFood.Pages.Restaurants.ClientRestaurantsModel
+@{
+    ViewData["Title"] = "ClientRestaurants";
+}
+
+<h1>ClientRestaurants</h1>
+
+<table class="table" id="restaurants">
+
+</table>
+
+@section Scripts {
+    @*<environment include="Development">
+        <script src="~/lib/datatables/js/dataTables.bootstrap.js"></script>
+        <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+        <script src="~/lib/datatables/js/dataTables.dataTables.js"></script>
+        <script src="~/lib/datatables/js/dataTables.foundation.js"></script>
+        <script src="~/lib/datatables/js/dataTables.jqueryui.js"></script>
+        <script src="~/lib/datatables/js/dataTables.material.js"></script>
+        <script src="~/lib/datatables/js/dataTables.semanticui.js"></script>
+        <script src="~/lib/datatables/js/dataTables.uikit.js"></script>
+        <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+        <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+        <link href="~/lib/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.foundation.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.jqueryui.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.material.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.semanticui.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/dataTables.uikit.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+        <link href="~/lib/datatables/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">*@
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    @*</environment>*@
+    <script>
+        $(function () {
+            var cuisines = ["Unknown", "Mexican", "Italian", "Indian"]
+            $.ajax("/api/restaurants",
+                { method: "get" })
+                .then(function (response) {
+                    $("#restaurants").dataTable({
+                        data: response,
+                        columns: [
+                            { "data": "name" },
+                            { "data": "location" },
+                            {
+                                "data": "cuisine", "render": function (data) {
+                                    return cuisines[data];
+                                }
+                            }
+                        ]
+                    });
+                });
+        });
+    </script>
+}
